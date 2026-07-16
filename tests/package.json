@@ -1,0 +1,10 @@
+{
+  "name": "calculator-smoke-tests",
+  "private": true,
+  "devDependencies": {
+    "@playwright/test": "^1.61.1"
+  },
+  "scripts": {
+    "test": "playwright test"
+  }
+}
