@@ -1,0 +1,26 @@
+# Маніфест проєкту — для AI-команди.
+# Описує, куди пушити і як назвати робочі артефакти. Команда читає цей
+# файл і працює з проєктом, не змінюючи власний код під його специфіку.
+
+project: calculator-smoke
+
+git:
+  push: true            # AI-team автоматично пушить після кожного завершеного пункту
+  remote: origin        # назва remote'а — bootstrap налаштовує через gh repo create
+  branch: main
+
+roadmap:
+  format: yaml          # ROADMAP.yaml; документатор оновлює статуси кодом
+  path: ROADMAP.yaml
+
+devlog:
+  dir: devlog
+  format: md
+
+# Зони володіння записом між агентами. Порожньо = жодних обмежень понад
+# периметр MCP/файлових прав. Додай зони пізніше, якщо в проєкті є
+# виражений поділ ролей, наприклад:
+#   zones:
+#     designer: ["frontend/", "static/"]
+#     programmer: ["backend/", "tests/"]
+zones: {}
