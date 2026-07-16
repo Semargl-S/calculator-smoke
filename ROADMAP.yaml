@@ -136,7 +136,7 @@ stages:
     title: CI + GitHub Pages deploy
     kind: code
     zone: .github/workflows
-    status: todo
+    status: done
     goal: 'Створити workflow .github/workflows/ci.yml, який на push у main запускає
       тести (s1.4), і .github/workflows/pages.yml (або гілка в тому ж workflow), який
       після успішних тестів деплоїть index.html, styles.css, app.js на GitHub Pages.
@@ -147,6 +147,14 @@ stages:
       https://<user>.github.io/calculator-smoke/ і показує робочий калькулятор.
 
       '
+    cost:
+      usd: 0.342482
+      runs: 4
+      tokens:
+        input: 286
+        output: 12820
+        cache_read: 788869
+        cache_creation: 45528
   - id: s1.6
     title: Документація
     kind: code
