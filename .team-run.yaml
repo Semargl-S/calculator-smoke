@@ -9,7 +9,7 @@ stages:
     title: Bootstrap проєкту
     kind: code
     zone: .
-    status: todo
+    status: done
     goal: 'Створити структуру нового проєкту calculator-smoke. Дії: (1) взяти шаблон
       /opt/ai-team/templates/manifest.template.yaml, заповнити slug=calculator-smoke,
       зберегти як .gefest/manifest.yaml; (2) створити порожній .env та .env.example
@@ -31,7 +31,7 @@ stages:
     title: 'ADR-001: технічні рішення проєкту'
     kind: code
     zone: docs/adr
-    status: todo
+    status: done
     goal: 'Написати ADR-001 з зафіксованими рішеннями: стек vanilla HTML/CSS/JS без
       збірки; структура — index.html + styles.css + app.js у корені; хостинг GitHub
       Pages з main-гілки, шлях /; тести — на розсуд QA (рекомендація: Playwright у
