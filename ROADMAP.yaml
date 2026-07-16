@@ -159,7 +159,7 @@ stages:
     title: Документація
     kind: code
     zone: .
-    status: todo
+    status: done
     goal: 'Оновити README.md: короткий опис, посилання на живу GitHub Pages сторінку,
       розділ "Як запустити локально" (просто відкрити index.html), розділ "Як прогнати
       тести" (команда з s1.4), посилання на ADR-001.
@@ -169,4 +169,12 @@ stages:
       запуску, інструкцію запуску тестів, посилання на ADR-001.
 
       '
-  status: in_progress
+    cost:
+      usd: 0.124703
+      runs: 2
+      tokens:
+        input: 2045
+        output: 3986
+        cache_read: 204696
+        cache_creation: 18003
+  status: done

@@ -63,7 +63,7 @@ stages:
     title: Дизайн та стилі
     kind: design
     zone: .
-    status: todo
+    status: done
     goal: 'Оформити калькулятор: styles.css з читабельною типографікою, адекватними
       розмірами кнопок (клікабельні на десктопі й мобільному), візуально відрізненими
       операторами від цифр, чітким дисплеєм. Стиль на розсуд дизайнера — головне не
@@ -79,7 +79,7 @@ stages:
     title: Автотести
     kind: code
     zone: tests
-    status: todo
+    status: done
     goal: 'QA обирає фреймворк (рекомендація — Playwright) і пише e2e-тести, що покривають:
       базова арифметика (по одному кейсу на кожну з 4 операцій); десяткова крапка
       (1.5 + 2.5 = 4); ділення на нуль (10/0 → "Error"); скидання після "Error" (Error
@@ -95,7 +95,7 @@ stages:
     title: CI + GitHub Pages deploy
     kind: code
     zone: .github/workflows
-    status: todo
+    status: done
     goal: 'Створити workflow .github/workflows/ci.yml, який на push у main запускає
       тести (s1.4), і .github/workflows/pages.yml (або гілка в тому ж workflow), який
       після успішних тестів деплоїть index.html, styles.css, app.js на GitHub Pages.
