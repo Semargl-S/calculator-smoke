@@ -40,7 +40,7 @@ stages:
     title: 'ADR-001: технічні рішення проєкту'
     kind: code
     zone: docs/adr
-    status: todo
+    status: done
     goal: 'Написати ADR-001 з зафіксованими рішеннями: стек vanilla HTML/CSS/JS без
       збірки; структура — index.html + styles.css + app.js у корені; хостинг GitHub
       Pages з main-гілки, шлях /; тести — на розсуд QA (рекомендація: Playwright у
@@ -53,6 +53,14 @@ stages:
       у структурованому вигляді (Context / Decision / Consequences).
 
       '
+    cost:
+      usd: 0.328559
+      runs: 4
+      tokens:
+        input: 288
+        output: 19756
+        cache_read: 718549
+        cache_creation: 49813
   - id: s1.2
     title: Реалізація калькулятора
     kind: code
