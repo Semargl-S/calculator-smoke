@@ -178,3 +178,38 @@ stages:
         cache_read: 204696
         cache_creation: 18003
   status: done
+- id: s1
+  title: Розширення функціоналу
+  items:
+  - id: s1.7
+    title: 'Унарні операції: √ і x²'
+    kind: code
+    zone: .
+    status: done
+    goal: 'Додати до калькулятора дві унарні операції: квадратний корінь (√) і піднесення
+      до квадрату (x²). Дії: (1) в app.js додати applyUnary(value, op) з підтримкою
+      "sqrt" і "sq" — НЕ розширювати calculate(a, b, op): вона побудована на switch
+      по бінарних операціях з двома операндами. Унарна застосовується до поточного
+      значення дисплея негайно, без очікування другого операнда і без зміни operator
+      / firstOperand; (2) √ від''ємного числа → "Error" тим самим механізмом, яким
+      уже обробляється ділення на нуль; (3) в index.html додати кнопки √ і x² у наявну
+      сітку; (4) додати юніт-тести на applyUnary: sqrt(9)=3, sqrt(0)=0, sqrt(-1)→Error,
+      sq(4)=16, sq(-3)=9, sq(0)=0 — якщо тестової інфраструктури в репо ще немає,
+      підняти мінімальну (vitest або jest на вибір команди) і додати npm-скрипт `test`;
+      (5) оновити README.md.
+
+      '
+    acceptance: 'app.js містить applyUnary; calculate(a, b, op) не змінена; кнопки
+      √ і x² присутні в index.html; sqrt(9)=3, sq(4)=16, sqrt(-1) дає Error; нові
+      тести проходять локально і в CI; зміни закоммічені й запушені в origin/main.
+
+      '
+    cost:
+      usd: 0.594936
+      runs: 2
+      tokens:
+        input: 144
+        output: 15538
+        cache_read: 985019
+        cache_creation: 54307
+  status: done

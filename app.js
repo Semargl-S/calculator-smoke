@@ -78,6 +78,30 @@ function calculate(a, b, op) {
   }
 }
 
+function applyUnary(value, op) {
+  switch (op) {
+    case 'sqrt':
+      if (value < 0) return null;
+      return Math.sqrt(value);
+    case 'sq':
+      return value * value;
+    default:
+      return value;
+  }
+}
+
+function handleUnary(op) {
+  if (isError) return;
+  const current = parseFloat(display.textContent);
+  const result = applyUnary(current, op);
+  if (result === null) {
+    updateDisplay('Error');
+    isError = true;
+    return;
+  }
+  updateDisplay(String(result));
+}
+
 function handleEquals() {
   if (isError) return;
   if (firstOperand === null || operator === null) return;
@@ -119,6 +143,9 @@ document.querySelectorAll('[data-action]').forEach(button => {
       case 'operator':    chooseOperator(value); break;
       case 'equals':      handleEquals(); break;
       case 'clear':       clearAll(); break;
+      case 'unary':       handleUnary(value); break;
     }
   });
 });
+
+if (typeof module !== 'undefined') module.exports = { applyUnary };

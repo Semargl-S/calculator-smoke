@@ -154,6 +154,18 @@ button[data-action="equals"]:hover {
   background: var(--bg-eq-hover);
 }
 
+/* ── Unary ops (√, x²): each spans 2 cols, amber accent ── */
+button[data-action="unary"] {
+  grid-column: span 2;
+  background: var(--bg-op);
+  color: var(--color-op);
+  font-weight: 600;
+}
+
+button[data-action="unary"]:hover {
+  background: var(--bg-op-hover);
+}
+
 /* ── Decimal: full-width bar at bottom ── */
 button[data-action="decimal"] {
   grid-column: 1 / -1;

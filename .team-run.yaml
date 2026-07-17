@@ -1,122 +1,29 @@
 project: calculator-smoke
 project_root: /opt/projects/calculator-smoke
-project_bootstrap: true
 stages:
-- id: 1
-  title: Smoke-прогонич конвеєра AI-team
+- id: s1
+  title: Розширення функціоналу
   items:
-  - id: s0.bootstrap
-    title: Bootstrap проєкту
-    kind: code
-    zone: .
-    status: done
-    goal: 'Створити структуру нового проєкту calculator-smoke. Дії: (1) взяти шаблон
-      /opt/ai-team/templates/manifest.template.yaml, заповнити slug=calculator-smoke,
-      зберегти як .gefest/manifest.yaml; (2) створити порожній .env та .env.example
-      без ключів (проєкт секретів не потребує — залишити файли з коментарем "no secrets
-      required"); (3) створити README.md з назвою "calculator-smoke" і одним реченням:
-      "Мінімальний веб-калькулятор — smoke-тест конвеєра AI-team."; (4) створити .gitignore
-      зі стандартними ігнорами (node_modules, .env, .DS_Store, .idea, .vscode); (5)
-      git init -b main, перший комміт "chore: bootstrap"; (6) gh repo create calculator-smoke
-      --public --source=. --remote=origin --push (публічний, бо GitHub Pages з приватного
-      репо потребує платного плану). Деталі — /opt/ai-team/docs/bootstrap.md.
-
-      '
-    acceptance: '.gefest/manifest.yaml валідний і містить slug=calculator-smoke; .env.example
-      існує; README.md містить назву й опис; git remote origin вказує на github.com/<user>/calculator-smoke;
-      перший push успішний; репо публічне.
-
-      '
-  - id: s1.1
-    title: 'ADR-001: технічні рішення проєкту'
-    kind: code
-    zone: docs/adr
-    status: done
-    goal: 'Написати ADR-001 з зафіксованими рішеннями: стек vanilla HTML/CSS/JS без
-      збірки; структура — index.html + styles.css + app.js у корені; хостинг GitHub
-      Pages з main-гілки, шлях /; тести — на розсуд QA (рекомендація: Playwright у
-      теці tests/, з мінімальним package.json лише під dev-deps); дизайн на розсуд
-      дизайнера в межах "читабельно й не боляче очам"; підтримка ділення на нуль —
-      вивід рядка "Error", наступне натискання цифри або C скидає стан.
-
-      '
-    acceptance: 'Файл docs/adr/ADR-001-*.md існує, містить усі перелічені рішення
-      у структурованому вигляді (Context / Decision / Consequences).
-
-      '
-  - id: s1.2
-    title: Реалізація калькулятора
-    kind: code
-    zone: .
-    status: done
-    goal: 'Реалізувати робочий калькулятор згідно з ADR-001: index.html з розміткою
-      кнопок і дисплея; app.js з логікою чотирьох операцій, десяткової крапки, =,
-      C, обробкою ділення на нуль ("Error" і скидання стану на наступному введенні
-      цифри/C). Стилі — заглушка, красивий дизайн з''явиться в s1.3.
-
-      '
-    acceptance: 'Відкриття index.html у браузері показує калькулятор; послідовності
-      2+2= → 4; 7*8= → 56; 10/0= → "Error"; "Error" → 5 → показує 5; C очищає дисплей.
-
-      '
-  - id: s1.3
-    title: Дизайн та стилі
-    kind: design
-    zone: .
-    status: done
-    goal: 'Оформити калькулятор: styles.css з читабельною типографікою, адекватними
-      розмірами кнопок (клікабельні на десктопі й мобільному), візуально відрізненими
-      операторами від цифр, чітким дисплеєм. Стиль на розсуд дизайнера — головне не
-      боляче очам і не ламається на екрані <400px завширшки.
-
-      '
-    acceptance: 'styles.css підключений з index.html; калькулятор виглядає цілісно
-      на десктопі й у мобільному в''юпорті (375px); кнопки мають hover/active стани;
-      контраст тексту читабельний.
-
-      '
-  - id: s1.4
-    title: Автотести
-    kind: code
-    zone: tests
-    status: done
-    goal: 'QA обирає фреймворк (рекомендація — Playwright) і пише e2e-тести, що покривають:
-      базова арифметика (по одному кейсу на кожну з 4 операцій); десяткова крапка
-      (1.5 + 2.5 = 4); ділення на нуль (10/0 → "Error"); скидання після "Error" (Error
-      → цифра → нове число); кнопка C очищає стан. Мінімальний package.json допускається
-      лише для dev-deps тестового фреймворку — у продакшн не тягнеться.
-
-      '
-    acceptance: 'npm test (або еквівалент, вказаний у README) запускає тести; усі
-      перелічені сценарії покриті й проходять зелено локально і в CI (див. s1.5).
-
-      '
-  - id: s1.5
-    title: CI + GitHub Pages deploy
-    kind: code
-    zone: .github/workflows
-    status: done
-    goal: 'Створити workflow .github/workflows/ci.yml, який на push у main запускає
-      тести (s1.4), і .github/workflows/pages.yml (або гілка в тому ж workflow), який
-      після успішних тестів деплоїть index.html, styles.css, app.js на GitHub Pages.
-      Налаштувати Pages у settings репо на джерело "GitHub Actions".
-
-      '
-    acceptance: 'Push у main тригерить workflow; тести зелені; сторінка доступна за
-      https://<user>.github.io/calculator-smoke/ і показує робочий калькулятор.
-
-      '
-  - id: s1.6
-    title: Документація
+  - id: s1.7
+    title: 'Унарні операції: √ і x²'
     kind: code
     zone: .
     status: todo
-    goal: 'Оновити README.md: короткий опис, посилання на живу GitHub Pages сторінку,
-      розділ "Як запустити локально" (просто відкрити index.html), розділ "Як прогнати
-      тести" (команда з s1.4), посилання на ADR-001.
+    goal: 'Додати до калькулятора дві унарні операції: квадратний корінь (√) і піднесення
+      до квадрату (x²). Дії: (1) в app.js додати applyUnary(value, op) з підтримкою
+      "sqrt" і "sq" — НЕ розширювати calculate(a, b, op): вона побудована на switch
+      по бінарних операціях з двома операндами. Унарна застосовується до поточного
+      значення дисплея негайно, без очікування другого операнда і без зміни operator
+      / firstOperand; (2) √ від''ємного числа → "Error" тим самим механізмом, яким
+      уже обробляється ділення на нуль; (3) в index.html додати кнопки √ і x² у наявну
+      сітку; (4) додати юніт-тести на applyUnary: sqrt(9)=3, sqrt(0)=0, sqrt(-1)→Error,
+      sq(4)=16, sq(-3)=9, sq(0)=0 — якщо тестової інфраструктури в репо ще немає,
+      підняти мінімальну (vitest або jest на вибір команди) і додати npm-скрипт `test`;
+      (5) оновити README.md.
 
       '
-    acceptance: 'README.md містить робоче посилання на GitHub Pages, інструкцію локального
-      запуску, інструкцію запуску тестів, посилання на ADR-001.
+    acceptance: 'app.js містить applyUnary; calculate(a, b, op) не змінена; кнопки
+      √ і x² присутні в index.html; sqrt(9)=3, sq(4)=16, sqrt(-1) дає Error; нові
+      тести проходять локально і в CI; зміни закоммічені й запушені в origin/main.
 
       '
