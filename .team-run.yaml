@@ -1,29 +1,31 @@
 project: calculator-smoke
 project_root: /opt/projects/calculator-smoke
+insert_after: s1
 stages:
-- id: s1
-  title: Розширення функціоналу
+- id: s2
+  title: Санітарія тестового конвеєра
   items:
-  - id: s1.7
-    title: 'Унарні операції: √ і x²'
+  - id: s1.8
+    title: Розвести unit- і e2e-тести
     kind: code
     zone: .
     status: todo
-    goal: 'Додати до калькулятора дві унарні операції: квадратний корінь (√) і піднесення
-      до квадрату (x²). Дії: (1) в app.js додати applyUnary(value, op) з підтримкою
-      "sqrt" і "sq" — НЕ розширювати calculate(a, b, op): вона побудована на switch
-      по бінарних операціях з двома операндами. Унарна застосовується до поточного
-      значення дисплея негайно, без очікування другого операнда і без зміни operator
-      / firstOperand; (2) √ від''ємного числа → "Error" тим самим механізмом, яким
-      уже обробляється ділення на нуль; (3) в index.html додати кнопки √ і x² у наявну
-      сітку; (4) додати юніт-тести на applyUnary: sqrt(9)=3, sqrt(0)=0, sqrt(-1)→Error,
-      sq(4)=16, sq(-3)=9, sq(0)=0 — якщо тестової інфраструктури в репо ще немає,
-      підняти мінімальну (vitest або jest на вибір команди) і додати npm-скрипт `test`;
-      (5) оновити README.md.
+    goal: 'CI червоний: tests/playwright.config.js має testDir: "." і підхоплює tests/unit/applyUnary.test.js
+      як e2e-тест. Playwright не дає jsdom, тому app.js:1 (const display = document.getElementById(...))
+      кидає ReferenceError: document is not defined. Два набори тестів перетнулись.
+      Дії: (1) у tests/playwright.config.js обмежити добір лише e2e — testMatch на
+      *.spec.js (або винести unit за межі testDir); (2) .github/workflows/ci.yml зараз
+      ганяє ТІЛЬКИ npm test у tests/ — додати окремий крок для unit: npm ci + npm
+      test у корені (jest уже налаштований у package.json з testEnvironment: jsdom
+      і testMatch: **/unit/**/*.test.js); (3) переконатись, що обидва набори ганяються
+      і проходять локально: у корені → jest бачить tests/unit/applyUnary.test.js;
+      у tests/ → playwright бачить лише calculator.spec.js; (4) app.js не переписувати
+      під модульність — jest-environment-jsdom для того й стоїть.
 
       '
-    acceptance: 'app.js містить applyUnary; calculate(a, b, op) не змінена; кнопки
-      √ і x² присутні в index.html; sqrt(9)=3, sq(4)=16, sqrt(-1) дає Error; нові
-      тести проходять локально і в CI; зміни закоммічені й запушені в origin/main.
+    acceptance: 'npm test у корені зелений і ганяє applyUnary.test.js; npm test у
+      tests/ зелений і НЕ чіпає unit-тестів; CI має обидва кроки і зелений на GitHub;
+      playwright.config більше не підхоплює *.test.js; зміни закоммічені й запушені
+      в origin/main.
 
       '

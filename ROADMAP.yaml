@@ -213,3 +213,39 @@ stages:
         cache_read: 985019
         cache_creation: 54307
   status: done
+- id: s2
+  title: Санітарія тестового конвеєра
+  items:
+  - id: s1.8
+    title: Розвести unit- і e2e-тести
+    kind: code
+    zone: .
+    status: done
+    goal: 'CI червоний: tests/playwright.config.js має testDir: "." і підхоплює tests/unit/applyUnary.test.js
+      як e2e-тест. Playwright не дає jsdom, тому app.js:1 (const display = document.getElementById(...))
+      кидає ReferenceError: document is not defined. Два набори тестів перетнулись.
+      Дії: (1) у tests/playwright.config.js обмежити добір лише e2e — testMatch на
+      *.spec.js (або винести unit за межі testDir); (2) .github/workflows/ci.yml зараз
+      ганяє ТІЛЬКИ npm test у tests/ — додати окремий крок для unit: npm ci + npm
+      test у корені (jest уже налаштований у package.json з testEnvironment: jsdom
+      і testMatch: **/unit/**/*.test.js); (3) переконатись, що обидва набори ганяються
+      і проходять локально: у корені → jest бачить tests/unit/applyUnary.test.js;
+      у tests/ → playwright бачить лише calculator.spec.js; (4) app.js не переписувати
+      під модульність — jest-environment-jsdom для того й стоїть.
+
+      '
+    acceptance: 'npm test у корені зелений і ганяє applyUnary.test.js; npm test у
+      tests/ зелений і НЕ чіпає unit-тестів; CI має обидва кроки і зелений на GitHub;
+      playwright.config більше не підхоплює *.test.js; зміни закоммічені й запушені
+      в origin/main.
+
+      '
+    cost:
+      usd: 0.215732
+      runs: 2
+      tokens:
+        input: 162
+        output: 6670
+        cache_read: 416927
+        cache_creation: 44200
+  status: done

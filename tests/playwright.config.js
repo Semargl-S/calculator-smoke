@@ -7,6 +7,7 @@ process.env.LD_LIBRARY_PATH = `${localLib}:${process.env.LD_LIBRARY_PATH || ''}`
 
 module.exports = defineConfig({
   testDir: '.',
+  testMatch: '**/*.spec.js',
   use: {
     headless: true,
   },
